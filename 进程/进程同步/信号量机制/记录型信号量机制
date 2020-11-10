@@ -1,0 +1,20 @@
+(1)记录型信号量的数据类型
+Type semaphore = record;
+  Value: integer; // 资源数量
+  L : list of process; // 阻塞队列
+ end;
+(2)记录型信号量的wait(s)和signal(s)操作
+procedure wait(s)
+  var s : semaphore;
+  begin
+    s.value = s.value - 1; //获得共享资源
+    if s.value < 0 then
+      block(s.L); //如果共享资源数不足，进程将会阻塞状态。
+   end
+proceduresignal(s)
+  var s : semaphore
+  begin
+    s.value = s.value + 1; //释放共享资源
+    if s.value <= 0 then
+      wakeup(s.L); //进程获得资源，进入就绪状态。
+  end
