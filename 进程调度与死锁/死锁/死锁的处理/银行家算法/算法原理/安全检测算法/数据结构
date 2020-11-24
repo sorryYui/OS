@@ -1,0 +1,2 @@
+work[]:长度为m的一维数组，进入安全性检测时初始化为当前的available。
+finish[]:长度为n的一位数值，进入安全性检测时，对于所有的index = 1...n，初始化为finish[index] = false;
