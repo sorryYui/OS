@@ -1,0 +1,14 @@
+设X,Y为两个长度为n的向量，当且仅当对所有的index = 1....n，都满足X[i] < Y[i]时，称X < Y；
+当仅当对所有的index = 1...n，都满足X[i] = Y[i]时，称X = Y;
+将矩阵allocation[i]和need[i]作为向量，其中allocation[i]表示已经分配给进程pi的各类资源数，
+need[i]表示进程pi为完成其任务可能仍然需要申请的各类资源数。
+1.资源试分配算法
+  设request[i]为进程pi的请求向量。如果request[i][j] = k,表示进程pi向系统请求j类资源k个。
+  当进程pi提出资源请求后，系统从资源的试分配程序开始执行。
+  1.如果request[i] <= need[i]，则转至步骤2，否则产生出错条件。
+  2.如果request[i] <= available[i],说明系统可以满足进程提出的资源请求，转至步骤3；否则阻塞进程pi，因为系统没有足够的资源分配给进程pi。
+  3.执行资源的试分配。
+    available[i] = available[i] - request[i];
+    allocation[i] = allocation[i] + request[i];
+    need[i] = need[i] - request[i];
+  4.转安全检测过程，如果安全检查结果是安全的，则确定本次的试分配，否则阻塞进程pi，系统取消资源的试分配，恢复到原来的分配状态。
