@@ -1,0 +1,7 @@
+步骤：
+1.查找index,使其满足条件finish[index] = false 并且 need[i] <= work；若无满足条件的index，则转入步骤3.
+2.如果找到满足条件的index，执行下列操作：
+  work[index] = work[index] + allocation[index];
+  finish[index] = true;
+  返回步骤1.
+3.如果对于所有的index，均有finish[index] = true，则说明系统安全，否则系统不安全。
